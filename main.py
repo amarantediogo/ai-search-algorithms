@@ -5,6 +5,7 @@ from app.algorithms import (
     breadth_first_search,
     depth_first_search,
     ordered_search,
+    greedy_search,
 )
 from app.problems.regua_puzzle import get_successors, is_goal
 
@@ -13,6 +14,7 @@ ALGORITHMS = (
     ("Breadth-First Search", breadth_first_search),
     ("Depth-First Search", depth_first_search),
     ("Ordered Search", ordered_search),
+    ("Greedy Search", greedy_search),
 )
 
 PRIORITY = {

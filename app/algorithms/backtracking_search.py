@@ -13,7 +13,7 @@ def get_by_priority(successors: list[Move], priority: dict) -> Move:
 
 
 def search(initial_state, is_goal, get_successors, priority=None):
-    current_state = SearchNode(initial_state)
+    current_state = SearchNode(initial_state, cost=0)
     visited = set()
     search_tree = SearchTree(current_state)
 

@@ -5,7 +5,7 @@ from app.models.search_tree import SearchTree
 
 
 def search(initial_state, is_goal, get_successors, priority=None):
-    open_queue = deque([SearchNode(initial_state)])
+    open_queue = deque([SearchNode(initial_state, cost=0)])
     visited = set()
     search_tree = SearchTree(open_queue[0])
 
