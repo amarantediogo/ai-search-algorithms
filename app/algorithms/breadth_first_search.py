@@ -3,7 +3,7 @@ from collections import deque
 from app.models.search_node import SearchNode
 
 
-def search(initial_state, is_goal, get_successors):
+def search(initial_state, is_goal, get_successors, priority=None):
     open_queue = deque([SearchNode(initial_state)])
     visited = set()
 
@@ -16,7 +16,9 @@ def search(initial_state, is_goal, get_successors):
         visited.add(current_state.state)
 
         for successor in get_successors(current_state.state):
-            if successor[0] not in visited:
-                open_queue.append(SearchNode(successor[0], current_state))
+            if successor.state not in visited:
+                open_queue.append(
+                    SearchNode(successor.state, current_state, successor.cost)
+                )
 
     return None

@@ -1,3 +1,5 @@
+from app.models.move import Move
+
 MOVES = {1, 2}
 
 
@@ -12,7 +14,7 @@ def is_goal(state: tuple[str]) -> bool:
     return True
 
 
-def get_successors(state: tuple[str]) -> list[list[tuple[str], int]]:
+def get_successors(state: tuple[str]) -> list[Move]:
     empty_index = state.index("-")
     successors = []
     for i in range(len(state)):
@@ -20,5 +22,5 @@ def get_successors(state: tuple[str]) -> list[list[tuple[str], int]]:
         if distance in MOVES:
             new_state = list(state)
             new_state[empty_index], new_state[i] = new_state[i], new_state[empty_index]
-            successors.append([tuple(new_state), distance])
+            successors.append(Move(tuple(new_state), state[i], distance))
     return successors
