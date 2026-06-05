@@ -29,16 +29,28 @@ def main():
         execution_time = perf_counter() - start_time
         print(f"{name} execution time: {execution_time:.6f} seconds")
         if resolve is not None:
-            print(f"{name} path:")
             print_path(resolve.get_solution_path())
+            print_metrics(resolve)
         else:
             print(f"\n{name} did not find a solution.")
         print()
 
 
 def print_path(path):
+    print("Solution path:")
     for state in path:
         print(state)
+
+
+def print_metrics(search_tree):
+    print("Solution metrics:")
+    print(f"Solution depth: {search_tree.get_solution_depth()}")
+    print(f"Solution cost: {search_tree.get_solution_cost()}")
+    print(f"Expanded nodes: {search_tree.get_expanded_nodes()}")
+    print(f"Visited nodes: {search_tree.get_visited_nodes()}")
+    print(
+        "Average branching factor: " f"{search_tree.get_average_branching_factor():.2f}"
+    )
 
 
 if __name__ == "__main__":

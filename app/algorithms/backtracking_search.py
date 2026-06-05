@@ -33,7 +33,7 @@ def search(initial_state, is_goal, get_successors, priority=None):
             continue
 
         successor = get_by_priority(successors, priority)
-        successor = SearchNode(successor.state, current_state, successor.cost)
+        successor = SearchNode(successor.state, current_state)
         search_tree.add_node(successor, current_state)
         current_state = successor
 

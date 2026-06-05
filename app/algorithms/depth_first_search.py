@@ -20,7 +20,7 @@ def search(initial_state, is_goal, get_successors, priority=None):
 
         for successor in get_successors(current_state.state):
             if successor.state not in visited:
-                node = SearchNode(successor.state, current_state, successor.cost)
+                node = SearchNode(successor.state, current_state)
                 open_stack.append(node)
                 search_tree.add_node(node, current_state)
 
