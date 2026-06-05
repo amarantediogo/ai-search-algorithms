@@ -1,5 +1,6 @@
 from app.models.move import Move
 from app.models.search_node import SearchNode
+from app.models.search_tree import SearchTree
 
 
 def get_by_priority(successors: list[Move], priority: dict) -> Move:
@@ -14,10 +15,12 @@ def get_by_priority(successors: list[Move], priority: dict) -> Move:
 def search(initial_state, is_goal, get_successors, priority=None):
     current_state = SearchNode(initial_state)
     visited = set()
+    search_tree = SearchTree(current_state)
 
     while current_state:
         if is_goal(current_state.state):
-            return current_state
+            search_tree.set_solution(current_state)
+            return search_tree
         visited.add(current_state.state)
 
         successors = []
@@ -30,6 +33,8 @@ def search(initial_state, is_goal, get_successors, priority=None):
             continue
 
         successor = get_by_priority(successors, priority)
-        current_state = SearchNode(successor.state, current_state, successor.cost)
+        successor = SearchNode(successor.state, current_state, successor.cost)
+        search_tree.add_node(successor, current_state)
+        current_state = successor
 
     return None

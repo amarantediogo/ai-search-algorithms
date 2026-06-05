@@ -30,7 +30,7 @@ def main():
         print(f"{name} execution time: {execution_time:.6f} seconds")
         if resolve is not None:
             print(f"{name} path:")
-            print_path(resolve.get_path())
+            print_path(resolve.get_solution_path())
         else:
             print(f"\n{name} did not find a solution.")
         print()
