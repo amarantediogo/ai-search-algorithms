@@ -12,7 +12,7 @@ def is_goal(state: tuple[str]) -> bool:
     return True
 
 
-def get_successors(state: tuple[str]) -> list[tuple[str]]:
+def get_successors(state: tuple[str]) -> list[list[tuple[str], int]]:
     empty_index = state.index("-")
     successors = []
     for i in range(len(state)):
@@ -20,5 +20,5 @@ def get_successors(state: tuple[str]) -> list[tuple[str]]:
         if distance in MOVES:
             new_state = list(state)
             new_state[empty_index], new_state[i] = new_state[i], new_state[empty_index]
-            successors.append(tuple(new_state))
+            successors.append([tuple(new_state), distance])
     return successors

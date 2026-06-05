@@ -17,6 +17,10 @@ def search(initial_state, is_goal, get_successors):
 
         for successor in get_successors(current_state.state):
             if successor[0] not in visited:
-                open_queue.append(SearchNode(successor[0], current_state))
+                open_queue.append(
+                    SearchNode(successor[0], current_state, cost=successor[1])
+                )
+
+        open_queue = deque(sorted(open_queue, key=lambda node: node.cost))
 
     return None

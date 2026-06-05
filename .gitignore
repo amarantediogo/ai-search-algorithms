@@ -1,0 +1,7 @@
+__pycache__/
+.conda/
+.vscode/
+
+*.pyc
+*.tmp
+*.DS_Store
