@@ -1,13 +1,15 @@
 from time import perf_counter
 
 from app.algorithms import (
+    a_star_search,
     backtracking_search,
     breadth_first_search,
     depth_first_search,
+    ida_star_search,
     ordered_search,
     greedy_search,
 )
-from app.problems.regua_puzzle import get_successors, is_goal
+from app.problems.regua_puzzle import get_successors, heuristic, is_goal
 
 ALGORITHMS = (
     ("Backtracking Search", backtracking_search),
@@ -15,6 +17,8 @@ ALGORITHMS = (
     ("Depth-First Search", depth_first_search),
     ("Ordered Search", ordered_search),
     ("Greedy Search", greedy_search),
+    ("A* Search", a_star_search),
+    ("IDA* Search", ida_star_search),
 )
 
 PRIORITY = {
@@ -27,7 +31,9 @@ def main():
     initial_state = tuple("AA-BB")
     for name, algorithm in ALGORITHMS:
         start_time = perf_counter()
-        resolve = algorithm.search(initial_state, is_goal, get_successors, PRIORITY)
+        resolve = algorithm.search(
+            initial_state, is_goal, get_successors, PRIORITY, heuristic
+        )
         execution_time = perf_counter() - start_time
         print(f"{name} execution time: {execution_time:.6f} seconds")
         if resolve is not None:

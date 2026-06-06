@@ -4,12 +4,11 @@ MOVES = {1, 2}
 
 
 def is_goal(state: tuple[str]) -> bool:
-    size = 1 + len(state) // 2
     seen_a = False
-    for i in range(size):
-        if state[i] == "A":
+    for piece in state:
+        if piece == "A":
             seen_a = True
-        if seen_a:
+        if seen_a and piece == "B":
             return False
     return True
 
@@ -24,3 +23,14 @@ def get_successors(state: tuple[str]) -> list[Move]:
             new_state[empty_index], new_state[i] = new_state[i], new_state[empty_index]
             successors.append(Move(tuple(new_state), state[i], distance))
     return successors
+
+
+def heuristic(state: tuple[str]) -> int:
+    inversions = 0
+    pieces_a = 0
+    for piece in state:
+        if piece == "A":
+            pieces_a += 1
+        elif piece == "B":
+            inversions += pieces_a
+    return inversions

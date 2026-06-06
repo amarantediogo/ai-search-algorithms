@@ -4,38 +4,26 @@ from app.models.search_node import SearchNode
 class SearchTree:
     def __init__(self, root: SearchNode):
         self.root = root
+        self.goal = None
 
     def add_node(self, node: SearchNode, parent: SearchNode):
-        node.parent = parent
-        parent.children.append(node)
+        parent.add_child(node)
 
     def set_solution(self, node: SearchNode):
         self.goal = node
 
     def get_solution_path(self):
-        return self.goal.get_path() if hasattr(self, "goal") else None
+        return self.goal.get_path() if self.goal is not None else None
 
     def get_solution_depth(self):
-        if not hasattr(self, "goal"):
+        if self.goal is None:
             return None
-
-        depth = 0
-        current_node = self.goal
-        while current_node.parent is not None:
-            depth += 1
-            current_node = current_node.parent
-        return depth
+        return len(self.goal.get_path()) - 1
 
     def get_solution_cost(self):
-        if not hasattr(self, "goal"):
+        if self.goal is None:
             return None
-
-        cost = 0
-        current_node = self.goal
-        while current_node.parent is not None:
-            cost += current_node.cost
-            current_node = current_node.parent
-        return cost
+        return self.goal.path_cost
 
     def get_expanded_nodes(self):
         return sum(1 for node in self._get_nodes() if node.children)
@@ -50,21 +38,6 @@ class SearchTree:
 
         total_children = sum(len(node.children) for node in self._get_nodes())
         return total_children / expanded_nodes
-
-    def get_profundidade_solucao(self):
-        return self.get_solution_depth()
-
-    def get_custo_solucao(self):
-        return self.get_solution_cost()
-
-    def get_nos_expandidos(self):
-        return self.get_expanded_nodes()
-
-    def get_nos_visitados(self):
-        return self.get_visited_nodes()
-
-    def get_fator_ramificacao_medio(self):
-        return self.get_average_branching_factor()
 
     def _get_nodes(self):
         stack = [self.root]

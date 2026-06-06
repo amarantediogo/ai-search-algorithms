@@ -1,9 +1,9 @@
-class Move:
-    state: any
-    movement: any
-    cost: int
+from dataclasses import dataclass
+from typing import Any
 
-    def __init__(self, state, movement, cost):
-        self.state = state
-        self.movement = movement
-        self.cost = cost
+
+@dataclass(frozen=True)
+class Move:
+    state: Any
+    movement: Any
+    cost: int

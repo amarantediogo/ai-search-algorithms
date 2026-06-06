@@ -1,6 +1,7 @@
 from app.models.move import Move
 from app.models.search_node import SearchNode
 from app.models.search_tree import SearchTree
+from app.utils.common import build_child
 
 
 def get_by_priority(successors: list[Move], priority: dict) -> Move:
@@ -12,8 +13,8 @@ def get_by_priority(successors: list[Move], priority: dict) -> Move:
     return min(successors, key=lambda x: (x.cost, x.movement != piece_priority))
 
 
-def search(initial_state, is_goal, get_successors, priority=None):
-    current_state = SearchNode(initial_state, cost=0)
+def search(initial_state, is_goal, get_successors, priority=None, heuristic=None):
+    current_state = SearchNode(initial_state)
     visited = set()
     search_tree = SearchTree(current_state)
 
@@ -32,9 +33,8 @@ def search(initial_state, is_goal, get_successors, priority=None):
             current_state = current_state.parent
             continue
 
-        successor = get_by_priority(successors, priority)
-        successor = SearchNode(successor.state, current_state)
-        search_tree.add_node(successor, current_state)
-        current_state = successor
+        node = build_child(current_state, get_by_priority(successors, priority or {}))
+        search_tree.add_node(node, current_state)
+        current_state = node
 
     return None

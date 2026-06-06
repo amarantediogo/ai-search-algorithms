@@ -1,17 +1,17 @@
-class SearchNode:
-    state: any
-    parent: "SearchNode"
-    children: list["SearchNode"]
-    cost: int
+from typing import Any
 
-    def __init__(self, state, parent=None, cost=1):
+
+class SearchNode:
+    def __init__(self, state: Any, parent: "SearchNode" = None, cost: int = 0):
         self.state = state
         self.parent = parent
-        self.children = []
+        self.children: list["SearchNode"] = []
         self.cost = cost
+        self.path_cost = cost if parent is None else parent.path_cost + cost
 
-    def add_child(self, child_node):
+    def add_child(self, child_node: "SearchNode"):
         child_node.parent = self
+        child_node.path_cost = self.path_cost + child_node.cost
         self.children.append(child_node)
 
     def get_path(self):
