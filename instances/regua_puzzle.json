@@ -1,0 +1,86 @@
+[
+  {
+    "name": "regua_puzzle_001",
+    "initial_state": "AA-BB",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_002",
+    "initial_state": "A-ABB",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_003",
+    "initial_state": "B-BAA",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_004",
+    "initial_state": "BAA-B",
+    "move_priority": "longest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_005",
+    "initial_state": "A-BBA",
+    "move_priority": "longest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_006",
+    "initial_state": "B-ABB",
+    "move_priority": "longest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_007",
+    "initial_state": "AAA-BBB",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_008",
+    "initial_state": "AAB-ABB",
+    "move_priority": "shortest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_009",
+    "initial_state": "BBBAA-BAA",
+    "move_priority": "longest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_010",
+    "initial_state": "BBBB-AAAA",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_011",
+    "initial_state": "BBABB-AAABA",
+    "move_priority": "longest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_012",
+    "initial_state": "BBBBA-BAAAA",
+    "move_priority": "longest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_013",
+    "initial_state": "AAAAAAA-BBBBBBB",
+    "move_priority": "longest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_014",
+    "initial_state": "AAAAAAAAAA-BBBBBBBBBB",
+    "move_priority": "longest",
+    "piece_priority": "A"
+  }
+]
