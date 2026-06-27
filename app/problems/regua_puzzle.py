@@ -1,3 +1,7 @@
+from pathlib import Path
+import json
+
+from app.models.instance import PuzzleInstance
 from app.models.move import Move
 
 MOVES = {1, 2}
@@ -34,3 +38,11 @@ def heuristic(state: tuple[str]) -> int:
         elif piece == "B":
             inversions += pieces_a
     return inversions
+
+
+def load_instances(path: str) -> list[PuzzleInstance]:
+    file_path = Path(path)
+    with file_path.open(encoding="utf-8") as file:
+        raw_instances = json.load(file)
+
+    return [PuzzleInstance.from_dict(instance) for instance in raw_instances]

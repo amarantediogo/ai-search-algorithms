@@ -1,3 +1,5 @@
+from time import perf_counter
+
 from app.models.move import Move
 from app.models.search_node import SearchNode
 from app.models.search_tree import SearchTree
@@ -13,12 +15,20 @@ def get_by_priority(successors: list[Move], priority: dict) -> Move:
     return min(successors, key=lambda x: (x.cost, x.movement != piece_priority))
 
 
-def search(initial_state, is_goal, get_successors, priority=None, heuristic=None):
+def search(
+    initial_state, is_goal, get_successors, priority=None, heuristic=None, timeout=None
+):
     current_state = SearchNode(initial_state)
     visited = set()
     search_tree = SearchTree(current_state)
 
+    start_time = perf_counter()
+
     while current_state:
+        if timeout is not None and (perf_counter() - start_time) > timeout:
+            print("Search timed out.")
+            return None
+
         if is_goal(current_state.state):
             search_tree.set_solution(current_state)
             return search_tree

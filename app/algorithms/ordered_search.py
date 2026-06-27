@@ -1,18 +1,27 @@
 from heapq import heappop, heappush
+from time import perf_counter
 
 from app.models.search_node import SearchNode
 from app.models.search_tree import SearchTree
 from app.utils.common import build_child
 
 
-def search(initial_state, is_goal, get_successors, priority=None, heuristic=None):
+def search(
+    initial_state, is_goal, get_successors, priority=None, heuristic=None, timeout=None
+):
     root = SearchNode(initial_state)
     frontier = [(0, 0, root)]
     best_cost = {initial_state: 0}
     search_tree = SearchTree(root)
     order = 1
 
+    start_time = perf_counter()
+
     while frontier:
+        if timeout is not None and perf_counter() - start_time > timeout:
+            print("Search timed out.")
+            return None
+
         _, _, current_state = heappop(frontier)
         if current_state.path_cost > best_cost[current_state.state]:
             continue
