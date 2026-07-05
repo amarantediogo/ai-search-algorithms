@@ -82,5 +82,41 @@
     "initial_state": "AAAAAAAAAA-BBBBBBBBBB",
     "move_priority": "longest",
     "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_015",
+    "initial_state": "ABAB-ABAB",
+    "move_priority": "shortest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_016",
+    "initial_state": "AABB-BBAA",
+    "move_priority": "longest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_017",
+    "initial_state": "BBAA-ABAB",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_018",
+    "initial_state": "ABABAB-ABAB",
+    "move_priority": "longest",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_019",
+    "initial_state": "AABABB-ABBA",
+    "move_priority": "shortest",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_020",
+    "initial_state": "AAABBB-AAABBB",
+    "move_priority": "longest",
+    "piece_priority": "A"
   }
 ]
