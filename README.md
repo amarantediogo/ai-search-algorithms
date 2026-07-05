@@ -37,7 +37,6 @@ Estrutura principal do projeto:
 .
 ├── main.py
 ├── README.md
-├── AGENTS.md
 ├── instances/
 │   └── regua_puzzle.json
 └── app/
