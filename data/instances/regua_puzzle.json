@@ -1,0 +1,122 @@
+[
+  {
+    "name": "regua_puzzle_001",
+    "initial_state": "AA-BB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_002",
+    "initial_state": "A-ABB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_003",
+    "initial_state": "B-BAA",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_004",
+    "initial_state": "BAA-B",
+    "cost_priority": "max",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_005",
+    "initial_state": "A-BBA",
+    "cost_priority": "max",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_006",
+    "initial_state": "B-ABB",
+    "cost_priority": "max",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_007",
+    "initial_state": "AAA-BBB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_008",
+    "initial_state": "AAB-ABB",
+    "cost_priority": "min",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_009",
+    "initial_state": "BBBAA-BAA",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_010",
+    "initial_state": "BBBB-AAAA",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_011",
+    "initial_state": "BBABB-AAABA",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_012",
+    "initial_state": "BBBBA-BAAAA",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_013",
+    "initial_state": "AAAAAAA-BBBBBBB",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_014",
+    "initial_state": "AAAAAAAAAA-BBBBBBBBBB",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_015",
+    "initial_state": "ABAB-ABAB",
+    "cost_priority": "min",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_016",
+    "initial_state": "AABB-BBAA",
+    "cost_priority": "max",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_017",
+    "initial_state": "BBAA-ABAB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_018",
+    "initial_state": "ABABAB-ABAB",
+    "cost_priority": "max",
+    "piece_priority": "B"
+  },
+  {
+    "name": "regua_puzzle_019",
+    "initial_state": "AABABB-ABBA",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_020",
+    "initial_state": "AAABBB-AAABBB",
+    "cost_priority": "max",
+    "piece_priority": "A"
+  }
+]
