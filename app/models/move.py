@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import Any
 
 
-@dataclass(frozen=True)
+@dataclass
 class Move:
-    state: Any
-    movement: Any
-    cost: int
+    piece: str
+    cost: float
+    new_state: list[str]
+    old_state: list[str]
