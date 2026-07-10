@@ -4,7 +4,7 @@ Projeto em Python para resolver o problema da regua usando diferentes algoritmos
 
 ## Descrição dos Problemas
 
-### Regua Puzzle
+### Régua Puzzle
 
 O problema modela uma regua com pecas `A`, pecas `B` e um espaco vazio `-`.
 Em cada movimento, uma peca a ate duas posicoes de distancia pode ocupar o espaco vazio.
@@ -41,7 +41,7 @@ Python 3.
 - `A* Search`
 - `IDA* Search`
 
-## Exemplo de Operacoes e Metodos Importantes
+## Exemplo de Operações e Métodos Importantes
 
 - `Puzzle.next_moves(state)`: gera movimentos possiveis.
 - `Puzzle.is_goal(state)`: verifica se o estado e objetivo.
