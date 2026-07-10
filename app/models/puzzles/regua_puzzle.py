@@ -1,3 +1,5 @@
+from time import perf_counter
+
 from app.algorithms.a_star import AStar
 from app.algorithms.backtracking import Backtracking
 from app.algorithms.base import Algorithm
@@ -98,9 +100,72 @@ class ReguaPuzzle(Puzzle):
     def get_initial_state(self) -> list[str]:
         return list(self.instance.initial_state)
 
+    def save_results_to_csv(
+        self,
+        results: list[dict],
+        output_path: str = "data/results/regua_puzzle_results.csv",
+    ) -> None:
+        super().save_results_to_csv(results, output_path)
+
     def solve(self, instance: ReguaPuzzleInstance) -> None:
         self.instance = instance
+        results = []
+
         for algorithm in ALGORITHMS:
             print(f"Solving {instance.initial_state} using {algorithm.name}...")
+            start_time = perf_counter()
             solution = algorithm.search(self)
-            print(f"Solution found: {solution}" if solution else "No solution found.")
+            execution_time = perf_counter() - start_time
+
+            results.append(
+                self.__build_result_row(
+                    instance=instance,
+                    algorithm_name=algorithm.name,
+                    solution=solution,
+                    execution_time=execution_time,
+                )
+            )
+
+            print(
+                f"Solution found: {solution.value}"
+                if solution
+                else "No solution found."
+            )
+
+        self.save_results_to_csv(results)
+
+    @staticmethod
+    def __format_state(state: list[str]) -> str:
+        return "".join(state)
+
+    def __format_solution_path(self, solution: SearchNode) -> str:
+        return " -> ".join(
+            self.__format_state(node.value)
+            for node in solution.path
+        )
+
+    def __build_result_row(
+        self,
+        instance: ReguaPuzzleInstance,
+        algorithm_name: str,
+        solution: SearchNode | None,
+        execution_time: float,
+    ) -> dict:
+        if solution is None:
+            return {
+                "nome_instancia": instance.name,
+                "nome_algoritmo": algorithm_name,
+                "caminho_solucao": "",
+                "custo_solucao": "",
+                "profundidade_solucao": "",
+                "tempo_execucao_segundos": f"{execution_time:.6f}",
+            }
+
+        return {
+            "nome_instancia": instance.name,
+            "nome_algoritmo": algorithm_name,
+            "caminho_solucao": self.__format_solution_path(solution),
+            "custo_solucao": solution.path_cost,
+            "profundidade_solucao": solution.depth,
+            "tempo_execucao_segundos": f"{execution_time:.6f}",
+        }

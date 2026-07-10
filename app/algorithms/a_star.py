@@ -31,7 +31,7 @@ class AStar(Algorithm):
                 continue
 
             if problem.is_goal(current_node.value):
-                return current_node.value
+                return current_node
 
             for move in problem.next_moves(current_node.value):
                 new_cost = current_cost + move.cost
@@ -40,7 +40,11 @@ class AStar(Algorithm):
                 if state_key in best_costs and best_costs[state_key] <= new_cost:
                     continue
 
-                new_node = SearchNode(move.new_state, parent=current_node)
+                new_node = SearchNode(
+                    move.new_state,
+                    parent=current_node,
+                    cost=move.cost,
+                )
                 current_node.add_child(new_node)
                 best_costs[state_key] = new_cost
                 priority = new_cost + problem.heuristic(new_node.value)

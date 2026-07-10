@@ -19,7 +19,7 @@ class DFS(Algorithm):
             current_depth = current_node.depth
 
             if problem.is_goal(current_node.value):
-                return current_node.value
+                return current_node
 
             if current_depth >= limit:
                 continue
@@ -33,7 +33,11 @@ class DFS(Algorithm):
                 if best_known_depth is not None and best_known_depth <= child_depth:
                     continue
 
-                child_node = SearchNode(move.new_state, parent=current_node)
+                child_node = SearchNode(
+                    move.new_state,
+                    parent=current_node,
+                    cost=move.cost,
+                )
                 current_node.add_child(child_node)
                 visited_depths[state_key] = child_depth
                 stack.append(child_node)

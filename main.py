@@ -17,7 +17,6 @@ def regua_puzzle():
             puzzle.solve(instance)
         except Exception as e:
             print(f"An error occurred while solving the instance: {e}")
-        break
 
 
 if __name__ == "__main__":

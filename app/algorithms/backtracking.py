@@ -14,7 +14,7 @@ class Backtracking(Algorithm):
 
         while current_node:
             if problem.is_goal(current_node.value):
-                return current_node.value
+                return current_node
 
             next_moves = problem.next_moves(current_node.value)
 
@@ -35,7 +35,11 @@ class Backtracking(Algorithm):
             priority_move = problem.select_priority_move(valid_next_moves)
 
             if priority_move:
-                new_node = SearchNode(priority_move.new_state, parent=current_node)
+                new_node = SearchNode(
+                    priority_move.new_state,
+                    parent=current_node,
+                    cost=priority_move.cost,
+                )
                 current_node.add_child(new_node)
                 visited_states.add(problem.generate_state_key(current_node.value))
                 current_node = new_node

@@ -41,7 +41,7 @@ class IDAStar(Algorithm):
             return None, estimated_cost
 
         if problem.is_goal(current_node.value):
-            return current_node.value, threshold
+            return current_node, threshold
 
         next_threshold = inf
 
@@ -50,7 +50,11 @@ class IDAStar(Algorithm):
             if state_key in path_states:
                 continue
 
-            child_node = SearchNode(move.new_state, parent=current_node)
+            child_node = SearchNode(
+                move.new_state,
+                parent=current_node,
+                cost=move.cost,
+            )
             current_node.add_child(child_node)
             path_states.add(state_key)
 

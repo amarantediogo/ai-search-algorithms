@@ -23,7 +23,7 @@ class Ordered(Algorithm):
             _, _, current_node = heappop(frontier)
 
             if problem.is_goal(current_node.value):
-                return current_node.value
+                return current_node
 
             next_moves = problem.next_moves(current_node.value)
 
@@ -32,7 +32,11 @@ class Ordered(Algorithm):
                 if state_key in visited_states:
                     continue
 
-                new_node = SearchNode(move.new_state, parent=current_node)
+                new_node = SearchNode(
+                    move.new_state,
+                    parent=current_node,
+                    cost=move.cost,
+                )
                 current_node.add_child(new_node)
                 visited_states.add(state_key)
                 heappush(
