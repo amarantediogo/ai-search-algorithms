@@ -2,7 +2,7 @@
 
 Projeto em Python para resolver o problema da regua usando diferentes algoritmos de busca.
 
-## Descrição Do Problemas
+## Descrição dos Problemas
 
 ### Regua Puzzle
 
@@ -41,7 +41,7 @@ Python 3.
 - `A* Search`
 - `IDA* Search`
 
-## Exemplo De Operacoes E Metodos Importantes
+## Exemplo de Operacoes e Metodos Importantes
 
 - `Puzzle.next_moves(state)`: gera movimentos possiveis.
 - `Puzzle.is_goal(state)`: verifica se o estado e objetivo.
@@ -64,7 +64,7 @@ Os resultados sao salvos em:
 data/results/regua_puzzle_results.csv
 ```
 
-## Exemplo De Resultado
+## Exemplo de Resultado
 
 Exemplo retirado de `data/results/regua_puzzle_results.csv`:
 
