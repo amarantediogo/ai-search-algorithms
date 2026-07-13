@@ -1,9 +1,9 @@
 import json
 
-from app.models.puzzles.base import Puzzle
+from app.models.instances.base import Instance
 
 
-class ReguaPuzzleInstance(Puzzle):
+class ReguaPuzzleInstance(Instance):
     def __init__(
         self,
         name: str,

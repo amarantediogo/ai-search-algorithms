@@ -48,9 +48,35 @@ Python 3.
 - `Puzzle.heuristic(state)`: calcula a heuristica usada nas buscas informadas.
 - `Puzzle.solve(instance)`: executa todos os algoritmos para uma instancia.
 - `Puzzle.save_results_to_csv(results, output_path)`: salva resultados em CSV.
+- `SearchTree.count_visited_nodes()`: retorna os nos visitados.
+- `SearchTree.count_expanded_nodes()`: retorna os nos expandidos.
+- `SearchTree.average_branching_factor()`: calcula o fator medio de ramificacao.
 - `SearchNode.path`: retorna o caminho da raiz ate a solucao.
 - `SearchNode.path_cost`: retorna o custo acumulado da solucao.
 - `SearchNode.depth`: retorna a profundidade do no.
+
+## Formato de Entrada
+
+As instancias do problema sao carregadas a partir do arquivo `data/instances/regua_puzzle.json`, que contem uma lista de instancias, cada uma com um estado inicial e um estado objetivo.
+
+```json
+[
+  {
+    "name": "regua_puzzle_001",
+    "initial_state": "AA-BB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  },
+  {
+    "name": "regua_puzzle_002",
+    "initial_state": "A-ABB",
+    "cost_priority": "min",
+    "piece_priority": "A"
+  }
+]
+```
+
+Os campos `cost_priority` e `piece_priority` sao usados para definir a prioridade de custo e a prioridade de peca na estratégia de seleção de estados.
 
 ## Como Executar
 
