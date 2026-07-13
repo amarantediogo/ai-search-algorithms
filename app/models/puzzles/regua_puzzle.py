@@ -28,6 +28,9 @@ ALGORITHMS: tuple[Algorithm] = (
 class ReguaPuzzle(Puzzle):
     instance: ReguaPuzzleInstance
 
+    def __init__(self) -> None:
+        self.search_trees: list[SearchTree] = []
+
     def is_goal(self, state: list[str]) -> bool:
         seen_a = False
         for piece in state:
@@ -92,7 +95,9 @@ class ReguaPuzzle(Puzzle):
 
     def create_search_tree(self) -> SearchTree:
         root = SearchNode(list(self.instance.initial_state))
-        return SearchTree(root)
+        search_tree = SearchTree(root)
+        self.search_trees.append(search_tree)
+        return search_tree
 
     def generate_state_key(self, state: list[str]) -> str:
         return "".join(state)
@@ -113,9 +118,15 @@ class ReguaPuzzle(Puzzle):
 
         for algorithm in ALGORITHMS:
             print(f"Solving {instance.initial_state} using {algorithm.name}...")
+            self.search_trees = []
             start_time = perf_counter()
             solution = algorithm.search(self)
             execution_time = perf_counter() - start_time
+
+            if not self.search_trees:
+                raise RuntimeError(
+                    f"{algorithm.name} did not create a search tree."
+                )
 
             results.append(
                 self.__build_result_row(
@@ -123,6 +134,7 @@ class ReguaPuzzle(Puzzle):
                     algorithm_name=algorithm.name,
                     solution=solution,
                     execution_time=execution_time,
+                    search_trees=self.search_trees,
                 )
             )
 
@@ -150,7 +162,10 @@ class ReguaPuzzle(Puzzle):
         algorithm_name: str,
         solution: SearchNode | None,
         execution_time: float,
+        search_trees: list[SearchTree],
     ) -> dict:
+        search_metrics = self.__calculate_search_metrics(search_trees)
+
         if solution is None:
             return {
                 "nome_instancia": instance.name,
@@ -159,6 +174,7 @@ class ReguaPuzzle(Puzzle):
                 "custo_solucao": "",
                 "profundidade_solucao": "",
                 "tempo_execucao_segundos": f"{execution_time:.6f}",
+                **search_metrics,
             }
 
         return {
@@ -168,4 +184,34 @@ class ReguaPuzzle(Puzzle):
             "custo_solucao": solution.path_cost,
             "profundidade_solucao": solution.depth,
             "tempo_execucao_segundos": f"{execution_time:.6f}",
+            **search_metrics,
+        }
+
+    @staticmethod
+    def __calculate_search_metrics(
+        search_trees: list[SearchTree],
+    ) -> dict:
+        visited_count = 0
+        explored_count = 0
+        children_count = 0
+
+        for search_tree in search_trees:
+            visited_nodes = search_tree.get_visited_nodes()
+            visited_count += len(visited_nodes)
+
+            for node in visited_nodes:
+                if node.children:
+                    explored_count += 1
+                    children_count += len(node.children)
+
+        average_branching_factor = (
+            children_count / explored_count
+            if explored_count
+            else 0.0
+        )
+
+        return {
+            "nos_visitados": visited_count,
+            "nos_explorados": explored_count,
+            "fator_medio_ramificacao": f"{average_branching_factor:.6f}",
         }
